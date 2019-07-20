@@ -87,14 +87,14 @@ def get_details(url, country_name):
             elif(heading == 'Face Value/Country:'):
                 stamp['raw_text'] = value
             elif(heading == 'Stanley Gibbons No.:'):
-                stamp['sg'] = value
+                stamp['SG'] = value
             elif(heading == 'Condition, Qty:'):
                 stamp['condition'] = value    
     except:
         stamp['price'] = None
         stamp['date_of_issue'] = None
         stamp['raw_text'] = None
-        stamp['sg'] = None
+        stamp['SG'] = None
         stamp['condition'] = None
 
     stamp['country'] = country_name

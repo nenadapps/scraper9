@@ -52,7 +52,10 @@ def get_page_items(url):
     try:
         for item in html.select('td b a'):
             item = 'http://www.philatelic-items.co.uk' + item.get('href')
-            items.append(item)
+            item_parts = item.split('&PHPSESSID')
+            item_href = item_parts[0]
+            items.append(item_href)
+            items.append(item_href)
     except: 
         pass
 
@@ -82,14 +85,11 @@ def get_details(url, country_name):
                 date_of_issue = value
                 stamp['date_of_issue'] = date_of_issue
             elif(heading == 'Face Value/Country:'):
-                raw_text = value
-                stamp['raw_text'] = raw_text
-            elif(heading == 'SG:'):
-                sg = value
-                stamp['sg'] = sg
-            elif(heading == 'Condition:'):
-                condition = value
-                stamp['condition'] = condition    
+                stamp['raw_text'] = value
+            elif(heading == 'Stanley Gibbons No.:'):
+                stamp['sg'] = value
+            elif(heading == 'Condition, Qty:'):
+                stamp['condition'] = value    
     except:
         stamp['price'] = None
         stamp['date_of_issue'] = None
